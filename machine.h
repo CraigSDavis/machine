@@ -30,7 +30,7 @@ enum opcodes
 	POP, //pop accumulator
 	POPR, //pop register
 
-   //Arithmetic
+   //Math
 	ADR, //add register to accumulator
 	ARC, //add R to accumulator with carry
   	ADD, //add mem to accumulator
@@ -112,5 +112,5 @@ enum opcodes
 };
 
 extern machine* initialize(void);
-extern void emulate(int, machine *);
+extern void runmachine(int, machine *);
 

@@ -1,17 +1,6 @@
-// emunlator of a 16 bit fictitious machine
-// notes:
-// emulator.c understand assembly language for machine
-// 64k ram
-// colored text output graphics video memory
-// this can be built out as a true computer, emulated disks, keyboard/mouse, an assembler, basic interpretor, BIOS, OS etc
-// 16 bit means each register inside the chip contains 16 bits of data
-//the registers contain two bytes of information each (a byte being 8 bits). Each bit can be either a 1 or a 0
-
-
 #include <stdlib.h>
 #include <stdbool.h>
-// #include <conio.h> //library for mapped text output & colored output
-#include "emulate.h"
+#include "machine.h"
 
 #define IMM fetch(MC->IP+1)
 #define IMM8 mem[MC->IP+1]
@@ -36,21 +25,6 @@ int fetch(int address)
 	return mem[address]+mem[address+1]*256;
 }
 
-/*void put(int address, int value)
-{
-	mem[address] = (value % 256);
-             mem[address+1] = (value / 256);
-	if ((address >= 0xa000) && (address < 0xa000 + 80*40*2) && (address%2 == 0))
-	{
-		_gotoxy(((address-0xa000)/2)%80+1,((address-0xa000)/2)/80+1);
-		_textbackground(value >> 12);
-		_textcolor((value >> 8) & 0x000F);
-		_putch(value & 0x00FF);
-	}
-
-	return;
-}*/
-
 void setflags(int testval, machine * MC)
 {
 	MC->Z = (testval == 0);
@@ -58,7 +32,7 @@ void setflags(int testval, machine * MC)
 	return;
 }
 	
-void emulate(int startaddress, machine * MC)
+void runmachine(int startaddress, machine * MC)
 {
 	int temp;
 	long int ltemp;
