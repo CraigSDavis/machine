@@ -111,6 +111,6 @@ enum opcodes
 	NOP //Do nothing
 };
 
-extern machine* initialise(void);
+extern machine* initialize(void);
 extern void emulate(int, machine *);
 

@@ -7,7 +7,7 @@ int main(void)
 
     getchar();
 
-    mymachine = initialise();
+    mymachine = initialize();
     
     mem[0] = LDI;
     mem[1] = 128;
